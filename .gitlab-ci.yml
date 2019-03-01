@@ -2,6 +2,9 @@ stages:
   - test
   - build
   - publish
+cache:
+  paths:
+    - vendor/ruby
 
 Unit Test:
   tags:
@@ -16,9 +19,7 @@ Build:
     - ruby
     - kirinnee
   stage: build
-  script:
-    - bundle install
-    - gem build $GEM_NAME
+  script: gem build $GEM_NAME
   artifacts:
     paths:
       - ./*.gem
