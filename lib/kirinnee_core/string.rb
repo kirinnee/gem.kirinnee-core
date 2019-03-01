@@ -98,7 +98,7 @@ class String
 	end
 
 	# Omits the last x characters of the string
-	# Does not modify the original string
+	# Modifies the original string
 	#
 	# "Singapore".omit 5 # => "Sing"
 	# "Singapore".omit 100 # => ""
@@ -108,6 +108,35 @@ class String
 	# @return [String]
 	def omit!(x)
 		replace(omit x)
+	end
+
+	# Takes the last x characters of the string
+	# Does not modify the original string
+	#
+	# "Singapore".back 4 #=> "pore"
+	# "Singapore".back 100 # =>"Singapore"
+	# "Singapore".back 0 # => ""
+	#
+	# @param [Integer] x the number of character to take
+	# @return [String]
+	def back(x)
+		if x > self.length
+			return self
+		end
+		self[self.length - x..-1]
+	end
+
+	# Takes the last x characters of the string
+	# Modify the original string
+	#
+	# "Singapore".back 4 #=> "pore"
+	# "Singapore".back 100 # =>"Singapore"
+	# "Singapore".back 0 # => ""
+	#
+	# @param [Integer] x the number of character to take
+	# @return [String]
+	def back!(x)
+		replace(back x)
 	end
 
 end
