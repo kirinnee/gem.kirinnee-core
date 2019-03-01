@@ -133,4 +133,49 @@ describe 'String' do
 			expect(skipped).to eq "pore"
 		end
 	end
+
+	describe "omit" do
+		it 'should omit the last x characters' do
+			expect("Singapore".omit 5).to eq "Sing"
+		end
+
+		it "should return empty string if x is larger than string length" do
+			expect("Singapore".omit 100).to eq ""
+			expect("Singapore".omit 9).to eq ""
+		end
+
+		it "should return original string if x is 0" do
+			expect("Singapore".omit 0).to eq "Singapore"
+		end
+
+		it "should not modify the original string" do
+			original = "Singapore"
+			skipped = original.omit 5
+			expect(original).to eq "Singapore"
+			expect(skipped).to eq "Sing"
+		end
+	end
+
+	describe "omit!" do
+		it 'should omit the last x characters' do
+			expect("Singapore".omit! 5).to eq "Sing"
+		end
+
+		it "should return empty string if x is larger than string length" do
+			expect("Singapore".omit! 100).to eq ""
+			expect("Singapore".omit! 9).to eq ""
+		end
+
+		it "should return original string if x is 0" do
+			expect("Singapore".omit! 0).to eq "Singapore"
+		end
+
+		it "should not modify the original string" do
+			original = "Singapore"
+			skipped = original.omit! 5
+			expect(original).to eq "Sing"
+			expect(skipped).to eq "Sing"
+		end
+	end
+
 end

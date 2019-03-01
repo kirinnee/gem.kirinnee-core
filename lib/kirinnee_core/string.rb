@@ -84,4 +84,30 @@ class String
 		replace(skip x)
 	end
 
+	# Omits the last x characters of the string
+	# Does not modify the original string
+	#
+	# "Singapore".omit 5 # => "Sing"
+	# "Singapore".omit 100 # => ""
+	# "Singapore".omit 0  # => "Singapore"
+	#
+	# @param [Integer] x the number of characters to omit
+	# @return [String]
+	def omit(x)
+		self[0..-(x + 1)]
+	end
+
+	# Omits the last x characters of the string
+	# Does not modify the original string
+	#
+	# "Singapore".omit 5 # => "Sing"
+	# "Singapore".omit 100 # => ""
+	# "Singapore".omit 0  # => "Singapore"
+	#
+	# @param [Integer] x the number of characters to omit
+	# @return [String]
+	def omit!(x)
+		replace(omit x)
+	end
+
 end
