@@ -1,7 +1,4 @@
 require "kirinnee_core/version"
+require "kirinnee_core/string"
+require "kirinnee_core/enumerable"
 
-module KirinneeCore
-	class Error < StandardError;
-	end
-	# Your code goes here...
-end
