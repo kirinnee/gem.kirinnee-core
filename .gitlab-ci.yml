@@ -2,9 +2,6 @@ stages:
   - test
   - build
   - publish
-cache:
-  paths:
-    - /usr/local/bundle
 
 Unit Test:
   tags:
