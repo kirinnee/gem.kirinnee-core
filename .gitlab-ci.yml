@@ -4,7 +4,7 @@ stages:
   - publish
 cache:
   paths:
-    - vendor/ruby
+    - /usr/local/bundle
 
 Unit Test:
   tags:
