@@ -129,14 +129,54 @@ class String
 	# Takes the last x characters of the string
 	# Modify the original string
 	#
-	# "Singapore".back 4 #=> "pore"
-	# "Singapore".back 100 # =>"Singapore"
-	# "Singapore".back 0 # => ""
+	# "Singapore".back! 4 #=> "pore"
+	# "Singapore".back! 100 # =>"Singapore"
+	# "Singapore".back! 0 # => ""
 	#
 	# @param [Integer] x the number of character to take
 	# @return [String]
 	def back!(x)
 		replace(back x)
 	end
+
+	# Removes the character at the index
+	# Does not modify the original string
+	#
+	# Returns without removing characters if index or negative index
+	# exceeds length of string
+	#
+	# "Hey! scent!".remove_char_at 0 # => "ey! scent!"
+	# "Hey! scent!".remove_char_at 3 # => "Hey scent!"
+	# "Hey! scent!".remove_char_at -1 # => "Hey! scent"
+	# "Hey! scent!".remove_char_at -6 #=> "Hey! cent!"
+	# "Hey! scent!".remove_char_at 100 # => "Hey! scent!"
+	# "Hey! scent!".remove_char_at -100 # => "Hey! scent!"
+	#
+	# @param [Integer] x the position to remove. Negative index counts from back
+	# @param [String]
+	def remove_char_at(x)
+		i = x + (x < 0 ? length : 0)
+		i < 0 ? self : take(i) + skip(i + 1)
+	end
+
+	# Removes the character at the index
+	# Modifies the original string
+	#
+	# Returns without removing characters if index or negative index
+	# exceeds length of string
+	#
+	# "Hey! scent!".remove_char_at! 0 # => "ey! scent!"
+	# "Hey! scent!".remove_char_at! 3 # => "Hey scent!"
+	# "Hey! scent!".remove_char_at! -1 # => "Hey! scent"
+	# "Hey! scent!".remove_char_at! -6 #=> "Hey! cent!"
+	# "Hey! scent!".remove_char_at! 100 # => "Hey! scent!"
+	# "Hey! scent!".remove_char_at! -100 # => "Hey! scent!"
+	#
+	# @param [Integer] x the position to remove. Negative index counts from back
+	# @param [String]
+	def remove_char_at!(x)
+		replace remove_char_at x
+	end
+
 
 end

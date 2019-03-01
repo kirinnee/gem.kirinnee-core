@@ -220,4 +220,55 @@ describe 'String' do
 		end
 	end
 
+	describe "remove_char_at" do
+		it 'should remove character at index if index is positive' do
+			expect("Hey! scent!".remove_char_at 0).to eq "ey! scent!"
+			expect("Hey! scent!".remove_char_at 3).to eq "Hey scent!"
+		end
+
+		it 'should remove character from the back if index is negative' do
+			expect("Hey! scent!".remove_char_at -1).to eq "Hey! scent"
+			expect("Hey! scent!".remove_char_at -6).to eq "Hey! cent!"
+		end
+
+		it 'should not remove character if the index exceeds string length' do
+			expect('Hey! scent!'.remove_char_at 100).to eq "Hey! scent!"
+			expect("Hey! scent!".remove_char_at -100).to eq "Hey! scent!"
+		end
+
+		it 'should not modify the original string' do
+			original = "Hello!"
+			removed = original.remove_char_at -1
+			expect(original).to eq "Hello!"
+			expect(removed).to eq "Hello"
+		end
+
+	end
+
+	describe "remove_char_at!" do
+		it 'should remove character at index if index is positive' do
+			expect("Hey! scent!".remove_char_at! 0).to eq "ey! scent!"
+			expect("Hey! scent!".remove_char_at! 3).to eq "Hey scent!"
+		end
+
+		it 'should remove character from the back if index is negative' do
+			expect("Hey! scent!".remove_char_at! -1).to eq "Hey! scent"
+			expect("Hey! scent!".remove_char_at! -6).to eq "Hey! cent!"
+		end
+
+		it 'should not remove character if the index exceeds string length' do
+			expect('Hey! scent!'.remove_char_at! 100).to eq "Hey! scent!"
+			expect("Hey! scent!".remove_char_at! -100).to eq "Hey! scent!"
+		end
+
+		it 'should modify the original string' do
+			original = "Hello!"
+			removed = original.remove_char_at! -1
+			expect(original).to eq "Hello"
+			expect(removed).to eq "Hello"
+		end
+
+	end
+
+
 end
