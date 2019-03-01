@@ -203,4 +203,26 @@ class String
 	def remove!(search)
 		replace remove search
 	end
+
+	# Remove any instance of the words in the array in order
+	# Does not modify the original string
+	#
+	# "A=>B->C".without ["=>","->"] # => "ABC"
+	#
+	# @param [Array<String>] unwanted the strings to remove
+	# @return [String]
+	def without(unwanted)
+		unwanted.reduce(self, &:remove)
+	end
+
+	# Remove any instance of the words in the array in order
+	# Modifies the original string
+	#
+	# "A=>B->C".without! ["=>","->"] # => "ABC"
+	#
+	# @param [Array<String>] unwanted the strings to remove
+	# @return [String]
+	def without!(unwanted)
+		replace without unwanted
+	end
 end

@@ -300,4 +300,30 @@ describe 'String' do
 		end
 	end
 
+	describe "without" do
+		it 'should remove all words in the array from the string' do
+			expect("=>a->b=>c->".without %w(=> ->)).to eq "abc"
+		end
+
+		it 'should not modify the original string' do
+			original = "a,b,c"
+			no_more = original.without %w(a b c)
+			expect(original).to eq "a,b,c"
+			expect(no_more).to eq ",,"
+		end
+	end
+
+	describe "without!" do
+		it 'should remove all words in the array from the string' do
+			expect("=>a->b=>c->".without! %w(=> ->)).to eq "abc"
+		end
+
+		it 'should modify the original string' do
+			original = "a,b,c"
+			no_more = original.without! %w(a b c)
+			expect(original).to eq ",,"
+			expect(no_more).to eq ",,"
+		end
+	end
+
 end
