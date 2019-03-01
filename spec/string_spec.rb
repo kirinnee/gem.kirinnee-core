@@ -90,4 +90,47 @@ describe 'String' do
 		end
 	end
 
+	describe "skip" do
+		it 'should skip the first x characters' do
+			expect("Singapore".skip 5).to eq "pore"
+		end
+
+		it "should return empty string if x is larger than string length" do
+			expect("Singapore".skip 100).to eq ""
+			expect("Singapore".skip 9).to eq ""
+		end
+
+		it "should return original string if x is 0" do
+			expect("Singapore".skip 0).to eq "Singapore"
+		end
+
+		it "should not modify the original string" do
+			original = "Singapore"
+			skipped = original.skip 5
+			expect(original).to eq "Singapore"
+			expect(skipped).to eq "pore"
+		end
+	end
+
+	describe "skip!" do
+		it 'should skip the first x characters' do
+			expect("Singapore".skip! 5).to eq "pore"
+		end
+
+		it "should return empty string if x is larger than string length" do
+			expect("Singapore".skip! 100).to eq ""
+			expect("Singapore".skip! 9).to eq ""
+		end
+
+		it "should return original string if x is 0" do
+			expect("Singapore".skip! 0).to eq "Singapore"
+		end
+
+		it "should not modify the original string" do
+			original = "Singapore"
+			skipped = original.skip! 5
+			expect(original).to eq "pore"
+			expect(skipped).to eq "pore"
+		end
+	end
 end
