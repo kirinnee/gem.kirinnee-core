@@ -14,3 +14,4 @@
 .idea/vcs.xml
 # rspec failure tracking
 .rspec_status
+*.gem
