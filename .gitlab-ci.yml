@@ -21,7 +21,7 @@ Build:
     - gem build $GEM_NAME
   artifacts:
     paths:
-      - .
+      - ./*.gem
 Publish:
   tags:
     - ruby
