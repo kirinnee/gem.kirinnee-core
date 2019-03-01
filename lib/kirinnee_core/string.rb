@@ -29,4 +29,30 @@ class String
 		replace(replace_all(search, target))
 	end
 
+	# Takes the first x characters of the string
+	# Does not modify original string
+	#
+	# "Singapore".take 4 # => "Sing"
+	# "Singapore".take 100 # => "Singapore"
+	# "Singapore".take 0 # => ""
+	#
+	# @param [Integer] x number of characters to take
+	# @return [String]
+	def take(x)
+		self[0...x]
+	end
+
+	# Takes the first x characters of the string
+	# Modifies original string
+	#
+	# "Singapore".take 4 # => "Sing"
+	# "Singapore".take 100 # => "Singapore"
+	# "Singapore".take 0 # => ""
+	#
+	# @param [Integer] x number of characters to take
+	# @return [String]
+	def take!(x)
+		replace(self[0...x])
+	end
+
 end
