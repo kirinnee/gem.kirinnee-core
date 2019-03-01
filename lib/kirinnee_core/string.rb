@@ -178,5 +178,29 @@ class String
 		replace remove_char_at x
 	end
 
+	# Removes all instance of the word
+	# Does not modify the original string
+	#
+	# "a=>b=>c".remove "=>" # => "abc"
+	# "a,b,c".remove "," # => "abc"
+	# "a,b,c".remove "a" # => ",b,c"
+	#
+	# @param [String] search string to remove
+	# @return [String]
+	def remove(search)
+		replace_all(search, "")
+	end
 
+	# Removes all instance of the word
+	# Modifies the original string
+	#
+	# "a=>b=>c".remove! "=>" # => "abc"
+	# "a,b,c".remove! "," # => "abc"
+	# "a,b,c".remove! "a" # => ",b,c"
+	#
+	# @param [String] search string to remove
+	# @return [String]
+	def remove!(search)
+		replace remove search
+	end
 end

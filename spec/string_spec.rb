@@ -270,5 +270,34 @@ describe 'String' do
 
 	end
 
+	describe "remove" do
+		it 'should remove all occurrences of the string' do
+			expect("a=>b=>c".remove "=>").to eq "abc"
+			expect("a,b,c".remove ",").to eq "abc"
+			expect("a,b,c".remove ",c").to eq "a,b"
+		end
+
+		it "should not modify the original string" do
+			original = "a,b,c"
+			removed = original.remove ","
+			expect(original).to eq "a,b,c"
+			expect(removed).to eq "abc"
+		end
+	end
+
+	describe "remove!" do
+		it 'should remove all occurrences of the string' do
+			expect("a=>b=>c".remove! "=>").to eq "abc"
+			expect("a,b,c".remove! ",").to eq "abc"
+			expect("a,b,c".remove! ",c").to eq "a,b"
+		end
+
+		it "should modify the original string" do
+			original = "a,b,c"
+			removed = original.remove! ","
+			expect(original).to eq "abc"
+			expect(removed).to eq "abc"
+		end
+	end
 
 end
