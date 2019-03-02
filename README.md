@@ -351,8 +351,40 @@ Counts the number of times a string appears
 "one day one night one".count_occurrences "one" # => 3
 ```
 
----
+### String
+Here are the monkey patched methods for Strings
 
+___
+##### without_key `without`
+Remove all pairs with the key in the supplied array
+
+Does not mutate the original hash
+```ruby
+{:a => 1, :b => 2, :c => 3, :d => 4}.without_key [:a, :b] #=> {:c => 3, :d => 4}
+```
+##### without_key! `without`
+Remove all pairs with the key in the supplied array
+
+Mutates the original hash
+```ruby
+{:a => 1, :b => 2, :c => 3, :d => 4}.without_key! [:a, :b] #=> {:c => 3, :d => 4}
+```
+	
+##### without_value `without`
+Remove all pairs with the value in the supplied array
+ 
+Does not mutate the original hash
+```ruby
+{:a => 1, :b => 2, :c => 3, :d => 4, :e => 1}.without_value [1, 2] #=> {:c => 3, :d => 4}
+```
+
+##### without_value `without`
+Remove all pairs with the value in the supplied array
+
+Mutate the original hash
+```ruby
+ {:a => 1, :b => 2, :c => 3, :d => 4, :e => 1}.without_value! [1, 2] #=> {:c => 3, :d => 4}
+```
 
 ## Development
 
