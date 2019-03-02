@@ -38,7 +38,7 @@ module Enumerable
 	end
 
 	# Skips the elements of the enumerable while the predicate evaluates to true
-	# Dies not mutate the original enumerable
+	# Does not mutate the original enumerable
 	#
 	# [1,2,3,2,1,0].skip_while {|x| x < 3} # => [3,2,1,0]
 	#
@@ -47,4 +47,18 @@ module Enumerable
 	def skip_while(&p)
 		drop_while(&p)
 	end
+
+	# Takes the last x element of the enumerable
+	# Does not mutate the original enumerable
+	#
+	# [1,2,3,4,5,6].back 3 #=> [4,5,6]
+	# [1,2,3,4,5,6].back 100 #=> [1,2,3,4,5,6]
+	# [1,2,3,4,5,6].back 0 #=> []
+	#
+	# @param [Integer] x the number of elements to take
+	# @return [Enumerable]
+	def back(x)
+		reverse.take(x).reverse
+	end
+
 end

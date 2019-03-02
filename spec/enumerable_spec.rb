@@ -66,6 +66,28 @@ describe 'Enumerable' do
 			expect(original).to eq [1, 2, 3, 2, 1, 0]
 			expect(skipped).to eq [3, 2, 1, 0]
 		end
+	end
+
+	describe 'back' do
+		it 'should take the last x elements of the enumerable' do
+			expect([1, 2, 3, 4, 5, 6].back 3).to eq [4, 5, 6]
+		end
+
+		it 'should take return all elements of enumerable if x exceeds size of enumerable' do
+			expect([1, 2, 3, 4, 5, 6].back 100).to eq [1, 2, 3, 4, 5, 6]
+		end
+
+		it 'should return an empty enumerable' do
+			expect([1, 2, 3, 4, 5, 6].back 0).to eq []
+		end
+
+		it 'should not mutate the original array' do
+			original = [1, 2, 3, 4]
+			backed = original.back 2
+			expect(original).to eq [1, 2, 3, 4]
+			expect(backed).to eq [3, 4]
+		end
 
 	end
+
 end
