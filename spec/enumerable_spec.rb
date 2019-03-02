@@ -141,4 +141,18 @@ describe 'Enumerable' do
 		end
 	end
 
+	describe 'remove' do
+		it 'should remove all occurrences of the element within the enumerable' do
+			expect([1, 2, 3, 1, 2, 3].remove 3).to eq [1, 2, 1, 2]
+			expect(%w(apple pear apple orange).remove "apple").to eq %w(pear orange)
+		end
+
+		it 'should not mutate the original enumerable' do
+			original = [1, 2, 3, 1, 2, 3]
+			removed = original.remove 3
+			expect(original).to eq [1, 2, 3, 1, 2, 3]
+			expect(removed).to eq [1, 2, 1, 2]
+		end
+	end
+
 end

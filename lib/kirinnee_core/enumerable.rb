@@ -95,4 +95,17 @@ module Enumerable
 	def omit_while(&p)
 		reverse_each.drop_while(&p).reverse
 	end
+
+	# Removes all occurrences of the element within the enumerable
+	# Does not mutate the original enumerable
+	#
+	# [1,2,3,1,2,3].remove 3 #=> [1,2,1,2]
+	# %w(apple pear apple pear).remove "apple" #=> %w(pear pear)
+	#
+	# @param [Object] search the target to remove from the array
+	# @return [Enumerable]
+	def remove(search)
+		where {|x| x != search}
+	end
+
 end
