@@ -30,4 +30,36 @@ describe "Hash" do
 			expect(without).to eq ({:c => 3, :d => 4})
 		end
 	end
+
+	describe "without_value" do
+		it 'should remove all the values in the given array from the hash' do
+			subj = {:a => 1, :b => 2, :c => 3, :d => 4, :e => 1}
+			expected = {:c => 3, :d => 4}
+			expect(subj.without_value [1, 2]).to eq expected
+		end
+
+		it 'should not mutate original hash' do
+			original = {:a => 1, :b => 2, :c => 3, :d => 4, :e => 1}
+			without = original.without_value [1, 2]
+			expect(original).to eq ({:a => 1, :b => 2, :c => 3, :d => 4, :e => 1})
+			expect(without).to eq({:c => 3, :d => 4})
+		end
+	end
+
+	describe "without_value!" do
+		it 'should remove all the values in the given array from the hash' do
+			subj = {:a => 1, :b => 2, :c => 3, :d => 4, :e => 1}
+			expected = {:c => 3, :d => 4}
+			expect(subj.without_value! [1, 2]).to eq expected
+		end
+
+		it 'should not mutate original hash' do
+			original = {:a => 1, :b => 2, :c => 3, :d => 4, :e => 1}
+			without = original.without_value! [1, 2]
+			expect(original).to eq ({:c => 3, :d => 4})
+			expect(without).to eq({:c => 3, :d => 4})
+		end
+	end
+
+
 end
