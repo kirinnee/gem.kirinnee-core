@@ -89,4 +89,19 @@ describe 'Enumerable' do
 		end
 	end
 
+	describe "back_while" do
+		it 'should take the last element while predicate evauates to true' do
+			expect([1, 2, 3, 2, 1, 0].back_while {|x| x < 2}).to eq [1, 0]
+			expect(%w(a b c b a).back_while {|x| x != "c"}).to eq %w(b a)
+			expect({:a => 1, :b => 2, :c => 3, :d => 4}.back_while {|_, i| i > 2}.to_h).to eq ({:c => 3, :d => 4})
+		end
+
+		it "should not mutate the original array" do
+			original = [1, 2, 3, 2, 1, 0]
+			backed = original.back_while {|x| x < 2}
+			expect(original).to eq [1, 2, 3, 2, 1, 0]
+			expect(backed).to eq [1, 0]
+		end
+	end
+
 end

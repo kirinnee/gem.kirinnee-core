@@ -61,4 +61,14 @@ module Enumerable
 		reverse.take(x).reverse
 	end
 
+	# Takes the last x element while predicate evaluates to true
+	# Does not mutate the original enumerable
+	#
+	# [1,2,3,2,1,0].back_while {|x| x <2} # => [1,0]
+	#
+	# @param [Block] p the predicate the to evaluate while considering to take the last element
+	# @return [Enumerable]
+	def back_while(&p)
+		reverse_each.take_while(&p).reverse
+	end
 end
