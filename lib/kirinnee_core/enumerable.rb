@@ -73,7 +73,7 @@ module Enumerable
 	end
 
 	# Omits the last x element of the enumerable
-	# Does not mutate te original enumerable
+	# Does not mutate the original enumerable
 	#
 	# [1,2,3,4,5].omit 2 # => [1,2,3]
 	# [1,2,3,4,5].omit 100 #=> []
@@ -85,4 +85,14 @@ module Enumerable
 		reverse_each.drop(x).reverse
 	end
 
+	# Omits the last element while the predicate evaluates to true
+	# Does not mutate the original enumerable
+	#
+	# [1,2,3,2,1,0].omit_while { |x| x <3} #=> [1,2,3]
+	#
+	# @param [Block] p the predicate to evaluate to consider to remove the last element
+	# @return [Enumerable]
+	def omit_while(&p)
+		reverse_each.drop_while(&p).reverse
+	end
 end

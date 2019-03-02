@@ -117,7 +117,7 @@ describe 'Enumerable' do
 			expect([1, 2].omit 0).to eq [1, 2]
 		end
 
-		it 'should not mutate the origianl array' do
+		it 'should not mutate the original enumerable' do
 			original = [1, 2, 3, 4]
 			omitted = original.omit 2
 			expect(original).to eq [1, 2, 3, 4]
@@ -125,4 +125,20 @@ describe 'Enumerable' do
 		end
 
 	end
+
+	describe "omit_while" do
+		it 'should remove the last element while predicate evaluates to true' do
+			expect([1, 2, 3, 2, 1, 0].omit_while {|x| x < 3}).to eq [1, 2, 3]
+			expect(%w(a b c b a).omit_while {|x| x != 'c'}).to eq %w(a b c)
+			expect({:a => 1, :b => 2, :c => 3, :d => 2, :e => 1}.omit_while {|_, i| i < 3}.to_h).to eq({:a => 1, :b => 2, :c => 3})
+		end
+
+		it 'should not mutate the original enumerable' do
+			original = [1, 2, 3, 2, 1]
+			omitted = original.omit_while {|x| x < 3}
+			expect(original).to eq [1, 2, 3, 2, 1]
+			expect(omitted).to eq [1, 2, 3]
+		end
+	end
+
 end
