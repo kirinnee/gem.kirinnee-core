@@ -37,4 +37,14 @@ module Enumerable
 		drop(x)
 	end
 
+	# Skips the elements of the enumerable while the predicate evaluates to true
+	# Dies not mutate the original enumerable
+	#
+	# [1,2,3,2,1,0].skip_while {|x| x < 3} # => [3,2,1,0]
+	#
+	# @param [Block] p predicate to decide whether to skip
+	# @return [Enumerable]
+	def skip_while(&p)
+		drop_while(&p)
+	end
 end

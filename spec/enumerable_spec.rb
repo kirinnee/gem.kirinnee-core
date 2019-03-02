@@ -53,4 +53,19 @@ describe 'Enumerable' do
 
 	end
 
+	describe "skip_while" do
+		it 'should skip while predicate evaluates to true' do
+			expect([1, 2, 3, 2, 1, 0].skip_while {|x| x < 3}).to eq [3, 2, 1, 0]
+			expect(%w(a b a).skip_while {|x| x == 'a'}).to eq %w(b a)
+			expect({:a => 1, :b => 2, :c => 1}.skip_while {|_, v| v == 1}.to_h).to eq({:b => 2, :c => 1})
+		end
+
+		it 'should not mutate the original enumerable' do
+			original = [1, 2, 3, 2, 1, 0]
+			skipped = original.skip_while {|x| x < 3}
+			expect(original).to eq [1, 2, 3, 2, 1, 0]
+			expect(skipped).to eq [3, 2, 1, 0]
+		end
+
+	end
 end
