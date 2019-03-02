@@ -121,6 +121,7 @@ module Enumerable
 	end
 
 	# Remove all occurrences of each element in provided array from target array
+	# Does not mutate the original enumerable
 	#
 	# [1,2,3,4,1,2,3,4].without [2,4] #=> [1,3,1,3]
 	#
@@ -130,4 +131,14 @@ module Enumerable
 		where {|x| !w.has?(x)}
 	end
 
+	# Remove all elements has index of the input array
+	# Does not mutate the original enumerable
+	#
+	# [6,5,4,3,2].without_index [0,2] #=> [5,3,2]
+	# {:a => 1, :b => 2, :c => 3}.without_index([0, 2]).to_h # => {:b=>2}
+	# @param [Array] index the elements to remove
+	# @return [Enumerable]
+	def without_index(index)
+		each_with_index.where {|_, i| !index.has?(i)}.map {|x, _| x}
+	end
 end

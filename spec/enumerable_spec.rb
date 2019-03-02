@@ -181,4 +181,19 @@ describe 'Enumerable' do
 			expect(without).to eq [1, 3, 1, 3]
 		end
 	end
+
+	describe 'without index' do
+		it 'should remove all elements that has index of the input array' do
+			expect([6, 5, 4, 3, 2].without_index [0, 2]).to eq [5, 3, 2]
+			expect(%w(a b c d e).without_index [0, 2]).to eq %w(b d e)
+			expect({:a => 1, :b => 2, :c => 3}.without_index([0, 2]).to_h).to eq({:b => 2})
+		end
+
+		it 'should not mutate original enumerable' do
+			original = [6, 5, 4, 3, 2]
+			without = original.without_index [0, 2]
+			expect(original).to eq [6, 5, 4, 3, 2]
+			expect(without).to eq [5, 3, 2]
+		end
+	end
 end
