@@ -25,7 +25,13 @@ Publish:
     - ruby
     - kirinnee
   stage: publish
-  script: gem push $GEM_NAME-*.gem -k $API_KEY
+  script:
+    - mkdir ~/.gem
+    - "echo \":rubygems_api_key: $API_KEY\" > ~/.gem/credentials"
+    - chmod 0600 ~/.gem/credentials
+    - gem push $GEM_NAME-*.gem
+  after_script:
+    - shred -vfu ~/.gem/credentials
   only:
     - /v[0-9\.]*/
   except:
