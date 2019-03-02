@@ -155,4 +155,30 @@ describe 'Enumerable' do
 		end
 	end
 
+	describe 'has?' do
+		it 'should return true if the search element exist in the enumerable' do
+			expect([1, 2, 3, 4, 5].has? 1).to be_truthy
+			expect(%w(a b c d a).has?('a')).to be_truthy
+		end
+
+		it 'should return false if the search element does not exist in the enumerable' do
+			expect([1, 2, 3, 4].has? 5).to be_falsey
+			expect(%w(a b c d).has? "e").to be_falsey
+		end
+
+	end
+
+	describe 'without' do
+		it 'should remove all occurrences of each element in the provided array from the target enumerable' do
+			expect([1, 2, 3, 4, 1, 2, 3, 4].without [2, 4]).to eq [1, 3, 1, 3]
+			expect(%w(a b c d a b c d).without %w(a b)).to eq %w(c d c d)
+		end
+
+		it 'should not mutate the original enumerable' do
+			original = [1, 2, 3, 4, 1, 2, 3, 4]
+			without = original.without [2, 4]
+			expect(original).to eq [1, 2, 3, 4, 1, 2, 3, 4]
+			expect(without).to eq [1, 3, 1, 3]
+		end
+	end
 end

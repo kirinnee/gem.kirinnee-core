@@ -108,4 +108,26 @@ module Enumerable
 		where {|x| x != search}
 	end
 
+	# Whether the enumerable contains at least 1 element that matches the input
+	#
+	# [1,2,3,4,5,6,1].has? 1 # true
+	# [1,2,3,4,5,6,1].has? 2 # true
+	# [1,2,3,4,5,6,1].has? 7 # false
+	#
+	# @param [Object] search target
+	# @return [Boolean]
+	def has?(search)
+		count(search) > 0
+	end
+
+	# Remove all occurrences of each element in provided array from target array
+	#
+	# [1,2,3,4,1,2,3,4].without [2,4] #=> [1,3,1,3]
+	#
+	# @param [Array] w the elements to remove
+	# @return [Enumerable]
+	def without(w)
+		where {|x| !w.has?(x)}
+	end
+
 end
