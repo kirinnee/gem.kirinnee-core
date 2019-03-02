@@ -196,4 +196,10 @@ describe 'Enumerable' do
 			expect(without).to eq [5, 3, 2]
 		end
 	end
+
+	describe 'indexes' do
+		it 'should return the indexes that matches the predicate' do
+			expect([6, 5, 4, 3, 2].indexes {|x| x < 4}).to eq [3, 4]
+		end
+	end
 end

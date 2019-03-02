@@ -141,4 +141,21 @@ module Enumerable
 	def without_index(index)
 		each_with_index.where {|_, i| !index.has?(i)}.map {|x, _| x}
 	end
+
+	# Gets the indexes that matches the predicate
+	# Does not mutate the original enumerable
+	#
+	# [6,5,4,3,2].indexes {|x| x < 4} # => [3,4]
+	#
+	# @param [Block] p the predicate to find indexes
+	# @return [Array<Integer>]
+	def indexes(&p)
+		ret = []
+		each_with_index do |x, i|
+			if p.call(x, i)
+				ret.append i
+			end
+		end
+		ret
+	end
 end
