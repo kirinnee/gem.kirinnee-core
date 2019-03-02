@@ -87,7 +87,6 @@ describe 'Enumerable' do
 			expect(original).to eq [1, 2, 3, 4]
 			expect(backed).to eq [3, 4]
 		end
-
 	end
 
 end
