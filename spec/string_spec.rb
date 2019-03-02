@@ -379,4 +379,14 @@ describe 'String' do
 			expect(repeated).to eq "Sand Sand "
 		end
 	end
+
+	describe "count_occurrences" do
+		it 'should count the number of occurrences' do
+			expect("Hello".count_occurrences "l").to eq 2
+			expect("one day one night".count_occurrences "one").to eq 2
+			expect("one day one night".count_occurrences "day").to eq 1
+			expect("one day one night".count_occurrences "morning").to eq 0
+			expect("one day one night one".count_occurrences "one").to eq 3
+		end
+	end
 end

@@ -236,7 +236,7 @@ class String
 	# @param [Integer] x number of times to repeat
 	# @return [String]
 	def repeat(x)
-		(0...x.abs).each.map {|i| self}.reduce("", &:+)
+		Array.new(x.abs, self).reduce("", &:+)
 	end
 
 	# Repeats the string x number of times
@@ -264,4 +264,19 @@ class String
 	def *(x)
 		repeat x
 	end
+
+	# Counts the number of times a string appears
+	#
+	# "Hello".count_occurrences "l" # => 2
+	# "one day one night".count_occurrences "one" # => 2
+	# "one day one night".count_occurrences "day" # => 1
+	# "one day one night".count_occurrences "morning" # => 0
+	# "one day one night one".count_occurrences "one" # => 3
+	#
+	# @param [String] search the string to count
+	# @return [Integer]
+	def count_occurrences(search)
+		(length - remove(search).length).abs / search.length
+	end
+
 end
