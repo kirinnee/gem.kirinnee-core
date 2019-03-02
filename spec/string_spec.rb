@@ -326,4 +326,57 @@ describe 'String' do
 		end
 	end
 
+	describe "repeat" do
+		it "should repeat the string x number of times, where x is absolute-d" do
+			expect("Hello ".repeat 3).to eq "Hello Hello Hello "
+			expect("Hi ".repeat -3).to eq "Hi Hi Hi "
+		end
+
+		it "should return empty string if number x is 0" do
+			expect("Sand".repeat 0).to eq ""
+		end
+
+		it "should not modify the original string" do
+			original = "Sand "
+			repeated = original.repeat 2
+			expect(original).to eq "Sand "
+			expect(repeated).to eq "Sand Sand "
+		end
+	end
+
+	describe "repeat!" do
+		it "should repeat the string x number of times, where x is absolute-d" do
+			expect("Hello ".repeat! 3).to eq "Hello Hello Hello "
+			expect("Hi ".repeat! -3).to eq "Hi Hi Hi "
+		end
+
+		it "should return empty string if number x is 0" do
+			expect("Sand".repeat! 0).to eq ""
+		end
+
+		it "should not modify the original string" do
+			original = "Sand "
+			repeated = original.repeat! 2
+			expect(original).to eq "Sand Sand "
+			expect(repeated).to eq "Sand Sand "
+		end
+	end
+
+	describe "*" do
+		it "should repeat the string x number of times, where x is absolute-d" do
+			expect("Hello " * 3).to eq "Hello Hello Hello "
+			expect("Hi " * -3).to eq "Hi Hi Hi "
+		end
+
+		it "should return empty string if number x is 0" do
+			expect("Sand" * 0).to eq ""
+		end
+
+		it "should not modify the original string" do
+			original = "Sand "
+			repeated = original * 2
+			expect(original).to eq "Sand "
+			expect(repeated).to eq "Sand Sand "
+		end
+	end
 end

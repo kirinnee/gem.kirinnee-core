@@ -225,4 +225,43 @@ class String
 	def without!(unwanted)
 		replace without unwanted
 	end
+
+	# Repeats the string x number of times
+	# Does not modify the original string
+	# Input is absolute-d
+	#
+	# "Hello ".repeat 3 # => "Hello Hello Hello "
+	# "Hello ".repeat -3 # => "Hello Hello Hello "
+	#
+	# @param [Integer] x number of times to repeat
+	# @return [String]
+	def repeat(x)
+		(0...x.abs).each.map {|i| self}.reduce("", &:+)
+	end
+
+	# Repeats the string x number of times
+	# Modifies the original string
+	# Input is absolute-d
+	#
+	# "Hello ".repeat! 3 # => "Hello Hello Hello "
+	# "Hello ".repeat! -3 # => "Hello Hello Hello "
+	#
+	# @param [Integer] x number of times to repeat
+	# @return [String]
+	def repeat!(x)
+		replace repeat(x)
+	end
+
+	# Repeats the string x number of times
+	# Does not modify the original string
+	# Input is absolute-d
+	#
+	# "Hello ".repeat 3 # => "Hello Hello Hello "
+	# "Hello ".repeat -3 # => "Hello Hello Hello "
+	#
+	# @param [Integer] x number of times to repeat
+	# @return [String]
+	def *(x)
+		repeat x
+	end
 end
