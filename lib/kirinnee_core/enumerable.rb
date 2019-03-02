@@ -71,4 +71,18 @@ module Enumerable
 	def back_while(&p)
 		reverse_each.take_while(&p).reverse
 	end
+
+	# Omits the last x element of the enumerable
+	# Does not mutate te original enumerable
+	#
+	# [1,2,3,4,5].omit 2 # => [1,2,3]
+	# [1,2,3,4,5].omit 100 #=> []
+	# [1,2,3,4,5].omit 0 # => [1,2,3,4,5]
+	#
+	# @param [Integer] x the number of elements to omit
+	# @return [Enumerable]
+	def omit(x)
+		reverse_each.drop(x).reverse
+	end
+
 end

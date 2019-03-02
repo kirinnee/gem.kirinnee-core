@@ -104,4 +104,25 @@ describe 'Enumerable' do
 		end
 	end
 
+	describe 'omit' do
+		it 'should remove the last x element from the enumerable' do
+			expect([1, 2, 3, 4, 5].omit 2).to eq [1, 2, 3]
+		end
+
+		it 'should remove all elements if x exceed the size of the enumerable' do
+			expect([1, 2, 3, 4, 5].omit 100).to eq []
+		end
+
+		it 'should remove no elements if x is 0' do
+			expect([1, 2].omit 0).to eq [1, 2]
+		end
+
+		it 'should not mutate the origianl array' do
+			original = [1, 2, 3, 4]
+			omitted = original.omit 2
+			expect(original).to eq [1, 2, 3, 4]
+			expect(omitted).to eq [1, 2]
+		end
+
+	end
 end
